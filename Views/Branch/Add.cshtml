@@ -1,0 +1,52 @@
+﻿@model EmployeeInformationSystem.Models.Branch
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+
+@using (Ajax.BeginForm("Add", "Branch", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    <div class="modal-body">
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    @Html.TextBoxFor(m => m.BranchName, new { @class = "form-control", @placeholder = "BranchName" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    @Html.TextBoxFor(m => m.BranchLocation, new { @class = "form-control", @placeholder = "BranchLocation" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    @Html.TextBoxFor(m => m.Division, new { @class = "form-control", @placeholder = "Division" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>Save</button>
+
+    </div>
+}

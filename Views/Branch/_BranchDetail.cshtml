@@ -1,0 +1,66 @@
+﻿@model IList<EmployeeInformationSystem.Models.Branch>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Branch Name</th>
+                <th>Branch Location</th>
+                <th>Division</th>
+                <th> Edit</th>
+                <th> Delete</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem =>item.BranchName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BranchLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Division)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit","Branch",new { id=item.BranchID })" class="editDialog">
+                            <i class="fade fa-pencil-square-o"></i>Edit
+                        </a>
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("Delete", "Delete", "Branch", new { @id = item.BranchID }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "div-record" }, new { @class = "fa fa-trash-o" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Add").click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $(".divforAdd").html(response);
+            });
+
+            $("#Add-Modal").modal({
+                backdrop: "static",
+            }, 'show');
+        });
+        $(".editDialog").click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $(".divforUpdate").html(response);
+            });
+
+            $("#Edit-Modal").modal({
+                backdrop: "static",
+            }, 'show');
+        })
+    })
+</script>

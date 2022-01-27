@@ -1,0 +1,79 @@
+﻿@model EmployeeInformationSystem.Models.ViewModel.SalaryVM
+
+    @{
+        ViewBag.Title = "Add";
+    }
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <h2>Add</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Salary</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset>
+            @*<legend>Salary</legend>*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmployeeName, "EmployeeName", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("EmployeeName", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="editor-label col-md-2">
+                @Html.LabelFor(model => model.BasicSalary)
+            </div>
+            <div class="Editor-field">
+                @Html.EditorFor(Model => Model.BasicSalary)
+                @Html.ValidationMessageFor(Model => Model.BasicSalary)
+
+            </div>
+            <div class="editor-label col-md-2">
+                @Html.LabelFor(model => model.HouseRent)
+            </div>
+            <div class="Editor-field ">
+                @Html.EditorFor(Model => Model.HouseRent)
+                @Html.ValidationMessageFor(Model => Model.HouseRent)
+
+            </div>
+
+            @*<div class="editor-label col-md-2">
+                @Html.LabelFor(model => model.TotalSalary)
+            </div>
+            <div class="Editor-field col-md-2">
+                @Html.EditorFor(Model => Model.TotalSalary)
+                @Html.ValidationMessageFor(Model => Model.TotalSalary)
+
+            </div>*@
+
+            <div class="editor-label col-md-2">
+                @Html.LabelFor(model => model.IsActive)
+            </div>
+            <div class="checkbox ">
+                @Html.EditorFor(Model => Model.IsActive)
+                @Html.ValidationMessageFor(Model => Model.IsActive)
+
+            </div>
+
+
+            <p>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </p>
+        </fieldset>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
